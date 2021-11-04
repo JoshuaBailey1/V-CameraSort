@@ -1,0 +1,175 @@
+/*
+Theme Name: Flatsome Child
+Description: This is a child theme for Flatsome Theme
+Author: UX Themes
+Template: flatsome
+Version: 4.0.0.36
+*/
+
+/*************** ADD CUSTOM CSS HERE.   ***************/
+
+/*
+You can add your own CSS here.
+
+Click the help icon above to learn more.
+*/
+
+
+/*
+You can add your own CSS here.
+
+Click the help icon above to learn more.
+*/
+
+
+/* Audio Charts Height */
+
+.audio-chart-container {
+    width: 100%;
+    margin: 10px auto 20px;
+    height: 450px;
+    position:relative;
+    border: 1px solid #eee;
+    padding: 5px 0 15px;
+}
+
+.graphCaption {
+    text-align: center;
+    margin-bottom: -35px;
+}
+
+
+.audio-chart-container {
+    border: none;
+}
+
+
+/* Audio Player */
+
+.audio-player .wave-container {
+    margin: 20px 0;
+}
+
+.audio-player .play-pause svg {
+    fill: #fff;
+}
+
+.audio-player p {
+    text-align: center!important;
+}
+
+.audio-player .play-pause.button:hover svg {
+    fill: #fff;
+}
+
+.audio-block-tab .volume-bar {
+    position: initial;
+}
+
+.audio-block-tab .volume-bar::-webkit-slider-runnable-track {
+    background: #dadada;
+    margin-top: 20px;
+}
+
+.audio-player .wave-container { cursor: pointer; margin-bottom: 16px; }
+.audio-player .wave-container.active, .audio-block-tab button.audio-block-device-btn.active { background: #f8f8f8; }
+.audio-player .wave-container:not(.active) { position: initial; }
+
+
+
+
+/* Temp */
+
+.scoreBadge.battery .scoreBadgeTitle,
+.scoreBadge.battery .scoreBadgeIcon {
+    border-color: #0183bf;
+}
+.scoreBadge.battery .scoreBadgeProtocol,
+.score-summary.battery .subscores {
+    color: #0183bf;
+}
+
+.echarts-item .graphCaption {
+    font-size: 1.0em;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+
+
+/* Crop Tool spacing fix */
+
+.image-compare.image-compare-2 .large-12 .rightCrop100percent.with-caption {
+    margin-top: -25px;
+}
+
+
+
+/* Title */
+
+@media (max-width: 1260px) {
+    h1.entry-title {
+        font-size: 26px;
+    }
+}
+
+
+/* Highlight first item in ranking */
+.battery.ranking .listElement:first-child {
+    background: rgba(1, 131, 191, 0.05);
+}
+
+
+/* Fix chinese home */
+
+.featured-post {
+    width: 100%;
+}
+
+
+/* Fix Video alignement */
+
+.row.image-compare.image-compare-3 .box-image div {
+    text-align: center;
+}
+
+
+
+/* Link Color */
+
+.entry-content a {
+    color: #0183bf;
+}
+
+#cn-notice-text a {
+    color: #a9ddf5;
+}
+
+#cn-accept-cookie {
+    background: white;
+    color: black;
+    font-weight: 500;
+}
+
+#cn-refuse-cookie {
+    transform: scale(0.9);
+}
+
+
+/* Fix Videos & Image boxes without caption */
+
+.row.image-compare.image-compare-1 .col .col-inner,
+.row.image-compare.image-compare-2 .col .col-inner,
+.row.image-compare.image-compare-3 .col .col-inner {
+    display: inline;
+}
+
+.row.image-compare.image-compare-1 .col .col-inner .box-image div {
+    text-align:  center;
+}
+
+.row.image-compare.image-compare-1 .col .col-inner .box-image div img {
+    display: inline-block;
+    max-width:  fit-content;
+}

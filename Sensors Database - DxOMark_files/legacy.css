@@ -1,0 +1,505 @@
+/* Global Overrides */
+
+html {
+  background-color: transparent;
+}
+
+
+@media (max-width: 849px) {
+  body {
+    overflow: hidden;
+  }
+}
+
+.page-wrapper {
+    padding-bottom: 0;
+}
+
+.full-width .ubermenu-nav, .container, .row {
+    max-width: 1240px;
+}
+
+.row.row-collapse {
+    max-width: 1240px;
+}
+
+.header-top {
+    min-height: 100px
+}
+
+.header-main {
+  /* height: 70px */
+}
+
+
+.nav>li>a {
+  font-family: "Nunito", sans-serif;
+}
+
+.nav>li>a {
+  font-weight: 700;
+}
+
+
+h1, h2, h3, h4, h5, h6, .heading-font, .off-canvas-center .nav-sidebar.nav-vertical > li > a {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+}
+
+h2 {
+    .section-title-main {
+        font-size: 20px;
+        text-transform: uppercase;
+    }
+}
+
+span.section-title-main {
+    border-bottom: 1px solid #ddd;
+}
+
+.section-title-normal {
+    border-bottom: none;
+}
+
+.entry-content .section-title-normal {
+    border-bottom: 1px solid #ddd;
+}
+.searchform .button.icon, .text-center .button:first-of-type {
+  margin-left: .12em !important;
+}
+
+
+.autocomplete-suggestion img {
+    width: auto;
+    border-radius: 0;
+    height: 40px;
+    display: inline-block;
+    margin-right: 0;
+}
+
+
+
+
+
+
+/* WP Toolbar */
+
+
+@media (max-width: 849px) {
+  #wpadminbar {
+    display: none!important;
+  }
+  html {
+    margin-top: 0!important
+  }
+}
+
+@media (min-width: 850px) {
+  .mfp-content,
+  .stuck,
+  button.mfp-close {
+
+  }
+  .is-full-height {
+    height: calc(100vh - 32px)!important;
+  }
+}
+
+
+
+
+
+
+/* Image Boxes */
+
+.row.image-compare .box-shadow-2 {
+    max-width: max-content!important;
+    max-width: -moz-max-content!important;
+}
+
+.row.image-compare .box-shadow-2 .box-text {
+    padding: 5px 10px;
+    font-size: .75em;
+}
+
+.row.image-compare .col:first-child .col-inner {
+    margin: auto;
+}
+
+
+
+
+
+
+
+
+/* Legacy Bars */
+
+
+.radial_chart_scores,
+.bars_chart_scores {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position:  absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.chart-container{
+    position: relative;
+    max-width: 500px;
+    margin: 0 auto;
+}
+.chart-container:before{
+    content: "";
+    display: block;
+    padding-top: 110%;  /* initial ratio of 1:1*/
+}
+.chart-container.bars {
+    max-width: 500px;
+}
+.chart-container.bars.size-5:before{
+    padding-top: 42%;
+}
+.chart-container.bars.size-6:before{
+    padding-top: 48%;
+}
+.chart-container.bars.size-7:before{
+    padding-top: 54%;
+}
+.chart-container.bars.size-8:before{
+    padding-top: 60%;
+}
+.chart-container.bars.size-9:before{
+    padding-top: 65%;
+}
+.chart-container.bars.size-10:before{
+    padding-top: 70%;
+}
+.chart-container.bars.size-11:before{
+    padding-top: 78%;
+}
+
+@media screen and (max-width: 849px) {
+    .chart-container.bars.size-7:before{
+        padding-top: 89%!important;
+    }
+    .chart-container.bars.size-8:before{
+        padding-top: 100%!important;
+    }
+    .chart-container.bars.size-9:before{
+        padding-top: 111%!important;
+    }
+}
+
+@media screen and (max-width: 549px) {
+    .chart-container.bars.size-7:before{
+        padding-top: 62%!important;
+    }
+    .chart-container.bars.size-8:before{
+        padding-top: 70%!important;
+    }
+    .chart-container.bars.size-9:before{
+        padding-top: 77%!important;
+    }
+}
+
+/* Anychart */
+
+.anychart-credits {
+    display: none;
+}
+
+
+
+
+
+
+/* Review Headings */
+
+.subscoreHeading {
+    background-color: #eee;
+    border-left: 5px solid #0183bf;
+    padding: 5px 10px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.subscoreHeading h3 {
+    margin-bottom: 0;
+    width: unset;
+    flex: 1;
+}
+
+.subscoreHeading .col.large-6 {
+    padding-bottom: 0;
+
+}
+
+.subscoreHeading .headingIcon {
+    flex: initial;
+    width: 58px;
+}
+
+.subscoreHeading .headingIcon img {
+    height: 32px;
+    padding: 2px;
+}
+
+.subscoreHeading .subScoreBars {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    font-family: 'Montserrat', 'Saira', sans-serif;
+    padding: 1px 0px;
+}
+
+.subscoreHeading .subScoreBars .currentDeviceBar {
+    position: absolute;
+    height: inherit;
+    overflow: hidden;
+    background-color: #0183bf;
+    min-width: 50%;
+}
+
+.subscoreHeading .subScoreBars p {
+    text-align: right;
+    color: white;
+    margin-bottom: 0;
+    font-size: 13px;
+}
+
+.subscoreHeading .subScoreBars .currentDeviceBar p {
+    color: white;
+}
+
+.subscoreHeading .subScoreBars .bestDeviceBar p.currentDeviceName {
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 4px 30px 4px 5px;
+}
+
+.subscoreHeading .subScoreBars p.currentDeviceSubScore {
+    text-align: left;
+    position: absolute;
+    right: 5px;
+    top: 0;
+    font-weight: 500;
+}
+
+.subscoreHeading .subScoreBars .bestDeviceBar {
+    height: 30px;
+    background-color: #ccc;
+    border-right: 1px solid #0183bf;
+    min-width: 300px;
+    position: relative;
+}
+
+.subscoreHeading .subScoreBars .bestDeviceBar p {
+        padding: 4px 5px;
+    }
+
+.subscoreHeading .subScoreBars .bestDeviceBar .bestDeviceSubScore {
+        position: absolute;
+        right: -40px;
+        padding: 5px;
+}
+
+.subscoreHeading .subScoreBars .bestDeviceBar>p {
+        color: #777777;
+}
+
+.subscoreHeading .subScoreBars .bestDeviceName {
+        padding: 6px 10px 4px 45px;
+        font-size: 0.8em;
+        min-width: 190px;
+
+}
+
+@media only screen and (max-width: 849px) {
+    .subscoreHeading .subScoreBars .bestDeviceBar {
+        min-width: 280px;
+    }
+}
+
+@media only screen and (max-width: 749px) {
+    .subscoreHeading .subScoreBars .bestDeviceBar {
+        min-width: 240px;
+    }
+}
+
+@media only screen and (max-width: 649px) {
+    .subscoreHeading .subScoreBars .bestDeviceBar {
+        min-width: 200px;
+    }
+}
+
+@media only screen and (max-width: 549px) {
+
+    .subscoreHeading {
+        display: block;
+    }
+
+    .subscoreHeading .headingIcon {
+        width: 52px;
+        float: left;
+    }
+
+    .subscoreHeading .headingIcon img {
+        height: 25px;
+    }
+
+    .subscoreHeading h3 {
+        line-height: 30px;
+    }
+
+    .subscoreHeading .subScoreBars p {
+        font-size: 11px;
+    }
+
+    .subscoreHeading .subScoreBars .bestDeviceBar {
+        height: 25px;
+        min-width: 85%;
+        /* background: transparent;
+        border-right: none; */
+    }
+
+    .subscoreHeading .subScoreBars .bestDeviceName {
+        padding: 5px 10px 4px 45px;
+        font-size: 12px;
+        width: 100%;
+        text-align: right;
+        display: none;
+    }
+
+    .subscoreHeading .subScoreBars .bestDeviceBar .bestDeviceSubScore {
+        display: none;
+    }
+
+}
+
+
+.category-selfie-reviews .subscoreHeading .subScoreBars .currentDeviceBar {
+    background-color: #0183bf;
+}
+
+.category-audio-reviews .subscoreHeading .subScoreBars .currentDeviceBar {
+    background-color: #0183bf;
+}
+
+.category-display-reviews .subscoreHeading .subScoreBars .currentDeviceBar {
+    background-color: #0183bf;
+}
+
+.category-speaker-reviews .subscoreHeading .subScoreBars .currentDeviceBar {
+    background-color: #006b72;
+}
+
+.category-selfie-reviews .subscoreHeading .subScoreBars .bestDeviceBar,
+.category-selfie-reviews .subscoreHeading {
+    border-color: #0183bf;
+}
+
+.category-audio-reviews .subscoreHeading .subScoreBars .bestDeviceBar,
+.category-audio-reviews .subscoreHeading {
+    border-color: #0183bf;
+}
+
+.category-display-reviews .subscoreHeading .subScoreBars .bestDeviceBar,
+.category-display-reviews .subscoreHeading {
+    border-color: #0183bf;
+}
+
+.category-speaker-reviews .subscoreHeading .subScoreBars .bestDeviceBar,
+.category-speaker-reviews .subscoreHeading {
+    border-color: #006b72;
+}
+
+
+
+
+
+
+/* Disclaimers */
+
+.disclaimer {
+    background: #ececec;
+    font-size: .8em;
+    padding: 15px;
+    margin: 15px 0;
+    text-align: justify;
+}
+.disclaimer a {
+
+}
+
+.legacy-disclaimer {
+    background: #555555;
+    color: white;
+    font-size: .8em;
+    padding: 15px;
+    margin: 15px 0;
+    text-align: justify;
+}
+.legacy-disclaimer a {
+    color: white;
+}
+
+
+.grayscale img {
+    -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
+    filter: grayscale(100%);
+    opacity: 0.1;
+}
+
+
+
+
+
+
+@media only screen and (max-width: 48em) {
+    .article-inner .social-icons {
+        margin: auto;
+    }
+    .protocolsNav ul {
+
+    }
+    .protocolsNav ul li {
+        padding: 0 15px;
+        font-size: 12px;
+    }
+    .protocolsNav li a img {
+        width: 40px;
+    }
+}
+
+
+    .productSheet {
+        align-self: center;
+        margin-left: auto;
+        font-weight: 600;
+        padding: 11px 10px 10px;
+    }
+
+    .productSheet a {
+        color: #999;
+        font-weight: 600;
+        font-size: 12px;
+        text-transform: uppercase;
+    }
+
+
+
+/* Slick arrow */
+.slick-next {
+    z-index: 1;
+}
+
