@@ -10,13 +10,12 @@ fn main()
 	//mut html_data := html.parse(raw_data)
 	mut tag := html_data.get_tag('tbody')[0]
 	//mut tag := html_data.get_tag_by_attribute_value('id','pointCloudResultList')[0] 
-	//mut data_list := get_data_list(tag)
-	//data_list.sort(a.joshs_score>b.joshs_score)
-	print(tag.attributes)
-	//calculate_joshs_rank(mut data_list)?
+	mut data_list := get_data_list(tag)
+	// data_list.sort(a.joshs_score>b.joshs_score)
+	calculate_joshs_rank(mut data_list)?
 	//data_list.sort(a.overall_score<b.overall_score)
-	//print_data_list_to_console(data_list)?
-	//print_data_list_to_file(data_list)?
+	print_data_list_to_console(data_list)?
+	print_data_list_to_file(data_list)?
 	// println(tag.children[0].children[3].children[0].content)	
 	// println(tag.children[0].children[6].children[0].children[0].content)
 	//os.write_file("test.txt", )?
