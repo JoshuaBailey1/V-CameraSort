@@ -1,24 +1,18 @@
 import os
-import net.http
+//import net.http
 import net.html
+//import camsort_modules
 
 fn main()
 {
-	//data := os.read_file("html.txt")?
-	//http.download_file('https://www.dxomark.com/Cameras/',"dxo.html")?
 	mut html_data := html.parse_file("Sensors Database - DxOMark.html")
-	//mut html_data := html.parse(raw_data)
 	mut tag := html_data.get_tag('tbody')[0]
 	//mut tag := html_data.get_tag_by_attribute_value('id','pointCloudResultList')[0] 
 	mut data_list := get_data_list(tag)
-	// data_list.sort(a.joshs_score>b.joshs_score)
 	calculate_joshs_rank(mut data_list)?
-	//data_list.sort(a.overall_score<b.overall_score)
-	print_data_list_to_console(data_list)?
-	print_data_list_to_file(data_list)?
-	// println(tag.children[0].children[3].children[0].content)	
-	// println(tag.children[0].children[6].children[0].children[0].content)
-	//os.write_file("test.txt", )?
+	terminal_user_interface(mut data_list)?
+	// print_data_list_to_console(data_list)?
+	// print_data_list_to_file(data_list)?
 }
 
 struct Score
@@ -41,6 +35,44 @@ struct Camera_data
 	landscape_score int
 	sports_score int
 	joshs_score int
+}
+
+fn terminal_user_interface(mut data_list[] Camera_data)?
+{
+	mut action := "0"
+	for
+	{
+		action = os.input("(1) Josh Best | (2) Josh Worst | (3) Print List : ")
+		match true
+		{
+			action.int()==1 { sort_by_josh_score(mut data_list, true)? }
+			action.int()==2 { sort_by_josh_score(mut data_list, false)? }
+			action.int()==3 { print_data_list_to_console(data_list)? }
+			action.int()==4 { println("hey") }
+			action.int()==5 { println("hey") }
+			action.int()==6 { println("hey") }
+			action.int()==7 { println("hey") }
+			action.int()==8 { println("hey") }
+			action.int()==9 { println("hey") }
+			action.int()==10 { println("hey") }
+			action.int()==11 { println("hey") }
+			action.int()==12 { println("hey") }
+			else { break }
+		}
+	}
+}
+
+fn sort_by_josh_score(mut data_list[] Camera_data, greater_than bool)?
+{
+	if greater_than
+	{
+		data_list.sort(a.joshs_score<b.joshs_score)
+	}
+	else
+	{
+		data_list.sort(a.joshs_score>b.joshs_score)
+	}
+	print_data_list_to_console(data_list[..1])?
 }
 
 fn print_data_list_to_console(data_list[] Camera_data)?
@@ -97,7 +129,7 @@ fn get_data_list(tag &html.Tag) []Camera_data
 		data_list[i].portrait_score = tag.children[i].children[j+6].attributes["data-value"].int()
 		data_list[i].landscape_score = tag.children[i].children[j+7].attributes["data-value"].int()
 		data_list[i].sports_score = tag.children[i].children[j+8].attributes["data-value"].int()
-		data_list[i].joshs_score = calculate_joshs_score(data_list[i], 1500)
+		data_list[i].joshs_score = calculate_joshs_score(data_list[i], 1000)
 	}
 	return data_list
 }
