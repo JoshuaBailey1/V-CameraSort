@@ -1,19 +1,25 @@
 import os
+import ui
 //import net.http
 import net.html
 //import camsort_modules
 
+struct App {
+mut:
+	window         &ui.Window = 0
+	title_box_text string
+}
+
+[console]
 fn main()
 {
 	mut html_data := html.parse_file("Sensors Database - DxOMark.html")
 	mut tag := html_data.get_tag('tbody')[0]
-	//mut tag := html_data.get_tag_by_attribute_value('id','pointCloudResultList')[0] 
 	mut data_list := get_data_list(tag)
 	calculate_joshs_rank(mut data_list)?
 	calculate_overall_rank(mut data_list)?
-	terminal_user_interface(mut data_list)?
-	// print_data_list_to_console(data_list)?
-	// print_data_list_to_file(data_list)?
+	// terminal_user_interface(mut data_list)?
+	graphical_user_interface()
 }
 
 struct Camera_data
@@ -24,12 +30,54 @@ struct Camera_data
 	format string
 	launch_date string
 	launch_price int
-	overall_score f32
+	overall_score int
 	dxo_overall_score int
 	portrait_score int
 	landscape_score int
 	sports_score int
 	joshs_score int
+}
+
+fn graphical_user_interface()
+{
+mut app := &App{}
+	app.window = ui.window(
+		width: 500
+		height: 500
+		title: 'Name'
+		state: app
+		children: [
+			ui.column(
+				spacing: 20
+				margin: ui.Margin{30, 30, 30, 30}
+				// uncomment if you don't set the width of the button
+				// widths: [ui.stretch,150]
+				children: [
+					ui.row(
+						spacing: 10
+						alignment: .center
+						children: [
+							ui.label(text: 'Title name: '),
+							ui.textbox(
+								max_len: 20
+								width: 300
+								placeholder: 'Please enter new title name'
+								text: &app.title_box_text
+								is_focused: true
+							),
+						]
+					),
+					ui.button(text: 'Change title', onclick: btn_change_title, width: 150),
+				]
+			),
+		]
+	)
+	ui.run(app.window)
+}
+
+fn btn_change_title(mut app App, btn &ui.Button) 
+{
+	app.window.set_title(app.title_box_text)
 }
 
 fn terminal_user_interface(mut data_list[] Camera_data)?
@@ -79,7 +127,7 @@ fn sort_by_josh_score(mut data_list[] Camera_data, greater_than bool)?
 	{
 		data_list.sort(a.joshs_score>b.joshs_score)
 	}
-	print_data_list_to_console(data_list[..5])?
+	print_data_list_to_console(data_list[..3])?
 }
 
 fn sort_by_overall_score (mut data_list[] Camera_data, greater_than bool)?
@@ -92,7 +140,7 @@ fn sort_by_overall_score (mut data_list[] Camera_data, greater_than bool)?
 	{
 		data_list.sort(a.overall_score>b.overall_score)
 	}
-	print_data_list_to_console(data_list[..5])?	
+	print_data_list_to_console(data_list[..3])?	
 }
 
 fn sort_by_dxo_overall_score (mut data_list[] Camera_data, greater_than bool)?
@@ -105,7 +153,7 @@ fn sort_by_dxo_overall_score (mut data_list[] Camera_data, greater_than bool)?
 	{
 		data_list.sort(a.dxo_overall_score>b.dxo_overall_score)
 	}
-	print_data_list_to_console(data_list[..5])?	
+	print_data_list_to_console(data_list[..3])?	
 }
 
 fn sort_by_dxo_portrait_score (mut data_list[] Camera_data, greater_than bool)?
@@ -118,7 +166,7 @@ fn sort_by_dxo_portrait_score (mut data_list[] Camera_data, greater_than bool)?
 	{
 		data_list.sort(a.portrait_score>b.portrait_score)
 	}
-	print_data_list_to_console(data_list[..5])?	
+	print_data_list_to_console(data_list[..3])?	
 }
 
 fn sort_by_dxo_landscape_score (mut data_list[] Camera_data, greater_than bool)?
@@ -131,7 +179,7 @@ fn sort_by_dxo_landscape_score (mut data_list[] Camera_data, greater_than bool)?
 	{
 		data_list.sort(a.landscape_score>b.landscape_score)
 	}
-	print_data_list_to_console(data_list[..5])?	
+	print_data_list_to_console(data_list[..3])?	
 }
 
 fn sort_by_dxo_sports_score (mut data_list[] Camera_data, greater_than bool)?
@@ -144,7 +192,7 @@ fn sort_by_dxo_sports_score (mut data_list[] Camera_data, greater_than bool)?
 	{
 		data_list.sort(a.sports_score>b.sports_score)
 	}
-	print_data_list_to_console(data_list[..5])?	
+	print_data_list_to_console(data_list[..3])?	
 }
 
 fn sort_by_age (mut data_list[] Camera_data, greater_than bool)?
@@ -157,7 +205,7 @@ fn sort_by_age (mut data_list[] Camera_data, greater_than bool)?
 	{
 		data_list.sort(a.launch_date<b.launch_date)
 	}
-	print_data_list_to_console(data_list[..5])?	
+	print_data_list_to_console(data_list[..3])?	
 }
 
 fn sort_by_megapixels (mut data_list[] Camera_data, greater_than bool)?
@@ -170,7 +218,7 @@ fn sort_by_megapixels (mut data_list[] Camera_data, greater_than bool)?
 	{
 		data_list.sort(a.megapixels<b.megapixels)
 	}
-	print_data_list_to_console(data_list[..5])?	
+	print_data_list_to_console(data_list[..3])?	
 }
 
 fn sort_by_price (mut data_list[] Camera_data, greater_than bool)?
@@ -183,7 +231,7 @@ fn sort_by_price (mut data_list[] Camera_data, greater_than bool)?
 	{
 		data_list.sort(a.launch_price<b.launch_price)
 	}
-	print_data_list_to_console(data_list[..5])?	
+	print_data_list_to_console(data_list[..3])?	
 }
 
 fn print_data_list_to_console(data_list[] Camera_data)?
@@ -207,8 +255,9 @@ fn print_data_list_to_console(data_list[] Camera_data)?
 
 fn print_data_list_to_file (data_list[] Camera_data)?
 {
-	os.open_file("test.txt", 'w')?
-	mut file := os.open_append("test.txt")?
+	filename := "SortedCameras.txt"
+	os.open_file(filename, 'w')?
+	mut file := os.open_append(filename)?
 	for n:=0; n<data_list.len; n+=1
 	{
 		file.writeln("Camera = ${data_list[n].camera_name}")?
