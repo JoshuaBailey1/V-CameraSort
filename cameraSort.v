@@ -7,7 +7,7 @@ import net.html
 struct App {
 mut:
 	window         &ui.Window = 0
-	title_box_text string
+	words 			string
 }
 
 [console]
@@ -40,11 +40,11 @@ struct Camera_data
 
 fn graphical_user_interface()
 {
-mut app := &App{}
+mut app := &App{words:"abc"}
 	app.window = ui.window(
-		width: 500
-		height: 500
-		title: 'Name'
+		width: 1000
+		height: 1000
+		title: 'Camera Sort'
 		state: app
 		children: [
 			ui.column(
@@ -52,32 +52,49 @@ mut app := &App{}
 				margin: ui.Margin{30, 30, 30, 30}
 				// uncomment if you don't set the width of the button
 				// widths: [ui.stretch,150]
-				children: [
+				children: 
+				[
 					ui.row(
 						spacing: 10
 						alignment: .center
-						children: [
-							ui.label(text: 'Title name: '),
-							ui.textbox(
-								max_len: 20
-								width: 300
-								placeholder: 'Please enter new title name'
-								text: &app.title_box_text
-								is_focused: true
-							),
+						children: 
+						[
+							ui.button(text: 'Sort', onclick: btn_sort_stuff, width: 85)
+							ui.button(text: 'Sort2', onclick: btn_sort_stuff, width: 85)	
+							ui.button(text: 'Sort3', onclick: btn_sort_stuff, width: 85)
+							ui.button(text: 'Sort4', onclick: btn_sort_stuff, width: 85)
+							ui.button(text: 'Sort5', onclick: btn_sort_stuff, width: 85)
+							ui.button(text: 'Sort6', onclick: btn_sort_stuff, width: 85)
+							ui.button(text: 'Sort7', onclick: btn_sort_stuff, width: 85)	
+							ui.button(text: 'Sort8', onclick: btn_sort_stuff, width: 85)
+							ui.button(text: 'Sort9', onclick: btn_sort_stuff, width: 85)
+							ui.button(text: 'Sort10', onclick: btn_sort_stuff, width: 85)
 						]
-					),
-					ui.button(text: 'Change title', onclick: btn_change_title, width: 150),
+					)
+					ui.textbox(
+					id : 'tb1'
+					text: &app.words
+					fitted_height: true
+					)
 				]
-			),
+			)
 		]
 	)
 	ui.run(app.window)
 }
 
+fn btn_sort_stuff(mut app App, btn &ui.Button)
+{
+	app.window.set_title("yes")
+	for i := 0; i<10; i++
+	{
+		app.words = app.words + "test"
+	}
+}
+
 fn btn_change_title(mut app App, btn &ui.Button) 
 {
-	app.window.set_title(app.title_box_text)
+	app.window.set_title("test")
 }
 
 fn terminal_user_interface(mut data_list[] Camera_data)?
