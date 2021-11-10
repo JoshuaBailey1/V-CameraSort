@@ -6,7 +6,17 @@ import net.html
 struct App {
 mut:
 	window         &ui.Window = 0
-	words 			string
+	camera_name 	string
+	megapixels		string
+	format			string
+	launch_date 	string
+	launch_price 	string
+	overall_score 	string
+	dxo_overall_score string
+	portrait_score 	string
+	landscape_score string
+	sports_score	string
+	joshs_score 	string
 	data_list[]		Camera_data
 }
 
@@ -18,8 +28,8 @@ fn main()
 	mut data_list := get_data_list(tag)
 	calculate_joshs_rank(mut data_list)
 	calculate_overall_rank(mut data_list)
-	terminal_user_interface(mut data_list)
-	// graphical_user_interface(mut data_list)
+	// terminal_user_interface(mut data_list)
+	graphical_user_interface(mut data_list)
 }
 
 struct Camera_data
@@ -43,7 +53,6 @@ struct Camera_data
 fn graphical_user_interface(mut data_list[] Camera_data)
 {
 	mut app := &App{
-		words:""
 		data_list: data_list}
 	app.window = ui.window(
 		width: 1000
@@ -52,7 +61,7 @@ fn graphical_user_interface(mut data_list[] Camera_data)
 		state: app
 		children: [
 			ui.column(
-				spacing: 10
+				spacing: 5
 				alignment: .center
 				margin: ui.Margin{30, 30, 30, 30}
 				children: 
@@ -74,10 +83,67 @@ fn graphical_user_interface(mut data_list[] Camera_data)
 						]
 					)
 					ui.textbox(
-					text: &app.words	
+					text: &app.camera_name	
 					is_wordwrap: true
 					height: 30
 					width: 30
+					)
+					ui.row(
+						spacing: 10
+						alignment: .center
+						children:
+						[
+							ui.textbox(
+							text: &app.megapixels
+							height: 30
+							width: 80
+							)
+							ui.textbox(
+							text: &app.format
+							height: 30
+							width: 80
+							)
+							ui.textbox(
+							text: &app.launch_price
+							height: 30
+							width: 80
+							)
+							ui.textbox(
+							text: &app.launch_date
+							height: 30
+							width: 80
+							)
+							ui.textbox(
+							text: &app.overall_score
+							height: 30
+							width: 80
+							)
+							ui.textbox(
+							text: &app.dxo_overall_score
+							height: 30
+							width: 80
+							)
+							ui.textbox(
+							text: &app.portrait_score
+							height: 30
+							width: 80
+							)
+							ui.textbox(
+							text: &app.landscape_score
+							height: 30
+							width: 80
+							)
+							ui.textbox(
+							text: &app.sports_score
+							height: 30
+							width: 80
+							)
+							ui.textbox(
+							text: &app.joshs_score
+							height: 30
+							width: 80
+							)
+						]
 					)
 				]
 			)
@@ -90,63 +156,78 @@ fn btn_josh_sort(mut app App, btn &ui.Button)
 {
 	sort_by_josh_score(mut app.data_list, true)
 	print_data_list_to_file(app.data_list)
-	app.words = app.data_list[0].camera_name
+	change_text_in_textboxes(mut app)
 }
 
 fn btn_overall_sort(mut app App, btn &ui.Button)
 {
 	sort_by_overall_score(mut app.data_list, true)
 	print_data_list_to_file(app.data_list)
-	app.words = app.data_list[0].camera_name
+	change_text_in_textboxes(mut app)
 }
 
 fn btn_dxo_overall_sort(mut app App, btn &ui.Button)
 {
 	sort_by_dxo_overall_score(mut app.data_list, true)
 	print_data_list_to_file(app.data_list)
-	app.words = app.data_list[0].camera_name
+	change_text_in_textboxes(mut app)
 }
 
 fn btn_dxo_portrait_sort(mut app App, btn &ui.Button)
 {
 	sort_by_dxo_portrait_score(mut app.data_list, true)
 	print_data_list_to_file(app.data_list)
-	app.words = app.data_list[0].camera_name
+	change_text_in_textboxes(mut app)
 }
 
 fn btn_dxo_landscape_sort(mut app App, btn &ui.Button)
 {
 	sort_by_dxo_landscape_score(mut app.data_list, true)
 	print_data_list_to_file(app.data_list)
-	app.words = app.data_list[0].camera_name
+	change_text_in_textboxes(mut app)
 }
 
 fn btn_dxo_sports_sort(mut app App, btn &ui.Button)
 {
 	sort_by_dxo_sports_score(mut app.data_list, true)
 	print_data_list_to_file(app.data_list)
-	app.words = app.data_list[0].camera_name
+	change_text_in_textboxes(mut app)
 }
 
 fn btn_age_sort(mut app App, btn &ui.Button)
 {
 	sort_by_age(mut app.data_list, true)
 	print_data_list_to_file(app.data_list)
-	app.words = app.data_list[0].camera_name
+	change_text_in_textboxes(mut app)
 }
 
 fn btn_megapixel_sort(mut app App, btn &ui.Button)
 {
 	sort_by_megapixels(mut app.data_list, true)
 	print_data_list_to_file(app.data_list)
-	app.words = app.data_list[0].camera_name
+	change_text_in_textboxes(mut app)
 }
 
 fn btn_price_sort(mut app App, btn &ui.Button)
 {
 	sort_by_price(mut app.data_list, true)
 	print_data_list_to_file(app.data_list)
-	app.words = app.data_list[0].camera_name
+	change_text_in_textboxes(mut app)
+}
+
+fn change_text_in_textboxes(mut app App)
+{
+	app.camera_name = app.data_list[0].camera_name
+	app.megapixels = app.data_list[0].megapixels.str() + " Megapixels"
+	app.format = app.data_list[0].format
+	app.launch_price = "$" + app.data_list[0].launch_price.str()
+	app.launch_date = app.data_list[0].launch_date
+	app.overall_score = app.data_list[0].overall_score.str()
+	app.dxo_overall_score = app.data_list[0].dxo_overall_score.str()
+	app.portrait_score = app.data_list[0].portrait_score.str()
+	app.landscape_score = app.data_list[0].landscape_score.str()
+	app.sports_score = app.data_list[0].sports_score.str()
+	app.joshs_score = app.data_list[0].joshs_score.str()
 }
 
 //*******************TERMINAL USER INTERFACE*******************
