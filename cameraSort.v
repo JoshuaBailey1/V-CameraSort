@@ -33,8 +33,9 @@ struct Camera_data
 
 //*******************GRAPHICAL USER INTERFACE*******************
 
-struct App {
-mut:
+struct App 
+{
+	mut:
 	high_or_low 	bool
 	window         &ui.Window = 0
 	camera_name 	string
@@ -53,9 +54,11 @@ mut:
 
 fn graphical_user_interface(mut data_list[] Camera_data)
 {
-	mut app := &App{
+	mut app := &App
+	{
 		high_or_low: true
-		data_list: data_list}
+		data_list: data_list
+	}
 	app.window = ui.window(
 		width: 1000
 		height: 500
@@ -99,181 +102,44 @@ fn graphical_user_interface(mut data_list[] Camera_data)
 					height: 30
 					width: 30
 					)
-					ui.row(
-						spacing: 10
-						alignment: .center
-						children:
-						[
-							ui.textbox(
-								placeholder: "Megapixels"
-								height: 30
-								width: 90
-								)
-							ui.textbox(
-								text: &app.megapixels
-								height: 30
-								width: 100
-								)
-						]
-					)
-					ui.row(
-						spacing: 10
-						alignment: .center
-						children:
-						[
-							ui.textbox(
-								placeholder: "Format"
-								height: 30
-								width: 90
-								)
-							ui.textbox(
-								text: &app.format
-								height: 30
-								width: 110
-								)
-						]
-					)
-					ui.row(
-						spacing: 10
-						alignment: .center
-						children:
-						[
-							ui.textbox(
-								placeholder: "Price"
-								height: 30
-								width: 90
-								)
-							ui.textbox(
-								text: &app.launch_price
-								height: 30
-								width: 60
-							)
-						]
-					)
-					ui.row(
-						spacing: 10
-						alignment: .center
-						children:
-						[
-							ui.textbox(
-								placeholder: "Date"
-								height: 30
-								width: 90
-								)
-							ui.textbox(
-								text: &app.launch_date
-								height: 30
-								width: 80
-								)
-						]
-					)
-					ui.row(
-						spacing: 10
-						alignment: .center
-						children:
-						[
-							ui.textbox(
-								placeholder: "Overall"
-								height: 30
-								width: 90
-								)
-							ui.textbox(
-								text: &app.overall_score
-								height: 30
-								width: 50
-								)
-						]
-					)
-					ui.row(
-						spacing: 10
-						alignment: .center
-						children:
-						[
-							ui.textbox(
-								placeholder: "DXO Overall"
-								height: 30
-								width: 90
-								)
-							ui.textbox(
-								text: &app.dxo_overall_score
-								height: 30
-								width: 50
-								)
-						]
-					)
-					ui.row(
-						spacing: 10
-						alignment: .center
-						children:
-						[
-							ui.textbox(
-								placeholder: "Portrait"
-								height: 30
-								width: 90
-								)
-							ui.textbox(
-								text: &app.portrait_score
-								height: 30
-								width: 50
-								)
-						]
-					)
-					ui.row(
-						spacing: 10
-						alignment: .center
-						children:
-						[
-							ui.textbox(
-								placeholder: "Landscape"
-								height: 30
-								width: 90
-								)
-							ui.textbox(
-								text: &app.landscape_score
-								height: 30
-								width: 50
-								)
-						]
-					)
-					ui.row(
-						spacing: 10
-						alignment: .center
-						children:
-						[
-							ui.textbox(
-								placeholder: "Sports"
-								height: 30
-								width: 90
-								)
-							ui.textbox(
-								text: &app.sports_score
-								height: 30
-								width: 50
-								)
-						]
-					)
-					ui.row(
-						spacing: 10
-						alignment: .center
-						children:
-						[
-							ui.textbox(
-								placeholder: "Josh's"
-								height: 30
-								width: 90
-								)
-							ui.textbox(
-							text: &app.joshs_score
-							height: 30
-							width: 50
-							)
-						]
-					)
+					create_ui_row("Megapixels", &app.megapixels)
+					create_ui_row("Format", &app.format)
+					create_ui_row("Price", &app.launch_price)
+					create_ui_row("Date", &app.launch_date)
+					create_ui_row("Overall", &app.overall_score)
+					create_ui_row("DXO Overall", &app.dxo_overall_score)
+					create_ui_row("Portrait", &app.portrait_score)
+					create_ui_row("Landscape", &app.landscape_score)
+					create_ui_row("Sports", &app.sports_score)
+					create_ui_row("Josh", &app.joshs_score)
 				]
 			)
 		]
 	)
 	ui.run(app.window)
+}
+
+fn create_ui_row(placeholder string, text &string) &ui.Stack
+{
+	unsafe{
+	return ui.row(
+		spacing: 10
+		alignment: .center
+		children:
+		[
+			ui.textbox(
+				placeholder: placeholder
+				height: 30
+				width: 90
+			)
+			ui.textbox(
+				text: text
+				height: 30
+				width: 120
+			)
+		]
+	)
+	}
 }
 
 fn btn_set_preference_high(mut app App, btn &ui.Button)
@@ -288,99 +154,63 @@ fn btn_set_preference_low(mut app App, btn &ui.Button)
 
 fn btn_josh_sort(mut app App, btn &ui.Button)
 {
-	match app.high_or_low
-	{
-		true { sort_by_josh_score(mut app.data_list, true)}
-		else { sort_by_josh_score(mut app.data_list, false)}
-	}
+	sort_by_josh_score(mut app.data_list, app.high_or_low)
 	print_data_list_to_file(app.data_list)
 	change_text_in_textboxes(mut app)
 }
 
 fn btn_overall_sort(mut app App, btn &ui.Button)
 {
-	match app.high_or_low
-	{
-		true { sort_by_overall_score(mut app.data_list, true)}
-		else { sort_by_overall_score(mut app.data_list, false)}
-	}
+	sort_by_overall_score(mut app.data_list, app.high_or_low)
 	print_data_list_to_file(app.data_list)
 	change_text_in_textboxes(mut app)
 }
 
 fn btn_dxo_overall_sort(mut app App, btn &ui.Button)
 {
-	match app.high_or_low
-	{
-		true { sort_by_dxo_overall_score(mut app.data_list, true)}
-		else { sort_by_dxo_overall_score(mut app.data_list, false)}
-	}
+	sort_by_dxo_overall_score(mut app.data_list, app.high_or_low)
 	print_data_list_to_file(app.data_list)
 	change_text_in_textboxes(mut app)
 }
 
 fn btn_dxo_portrait_sort(mut app App, btn &ui.Button)
 {
-	match app.high_or_low
-	{
-		true { sort_by_dxo_portrait_score(mut app.data_list, true)}
-		else { sort_by_dxo_portrait_score(mut app.data_list, false)}
-	}
+	sort_by_dxo_portrait_score(mut app.data_list, app.high_or_low)
 	print_data_list_to_file(app.data_list)
 	change_text_in_textboxes(mut app)
 }
 
 fn btn_dxo_landscape_sort(mut app App, btn &ui.Button)
 {
-	match app.high_or_low
-	{
-		true { sort_by_dxo_landscape_score(mut app.data_list, true)}
-		else { sort_by_dxo_landscape_score(mut app.data_list, false)}
-	}
+	sort_by_dxo_landscape_score(mut app.data_list, app.high_or_low)
 	print_data_list_to_file(app.data_list)
 	change_text_in_textboxes(mut app)
 }
 
 fn btn_dxo_sports_sort(mut app App, btn &ui.Button)
 {
-	match app.high_or_low
-	{
-		true { sort_by_dxo_sports_score(mut app.data_list, true)}
-		else { sort_by_dxo_sports_score(mut app.data_list, false)}
-	}
+	sort_by_dxo_sports_score(mut app.data_list, app.high_or_low)
 	print_data_list_to_file(app.data_list)
 	change_text_in_textboxes(mut app)
 }
 
 fn btn_age_sort(mut app App, btn &ui.Button)
 {
-	match app.high_or_low
-	{
-		true { sort_by_age(mut app.data_list, true)}
-		else { sort_by_age(mut app.data_list, false)}
-	}
+	sort_by_age(mut app.data_list, app.high_or_low)
 	print_data_list_to_file(app.data_list)
 	change_text_in_textboxes(mut app)
 }
 
 fn btn_megapixel_sort(mut app App, btn &ui.Button)
 {
-	match app.high_or_low
-	{
-		true { sort_by_megapixels(mut app.data_list, true)}
-		else { sort_by_megapixels(mut app.data_list, false)}
-	}
+	sort_by_megapixels(mut app.data_list, app.high_or_low)
 	print_data_list_to_file(app.data_list)
 	change_text_in_textboxes(mut app)
 }
 
 fn btn_price_sort(mut app App, btn &ui.Button)
 {
-	match app.high_or_low
-	{
-		true { sort_by_price(mut app.data_list, true)}
-		else { sort_by_price(mut app.data_list, false)}
-	}
+	sort_by_price(mut app.data_list, app.high_or_low)
 	print_data_list_to_file(app.data_list)
 	change_text_in_textboxes(mut app)
 }
@@ -671,6 +501,5 @@ fn calculate_joshs_score(data Camera_data, budget int) int
 			score += 10
 		}	
 	}
-
 	return score
 }
