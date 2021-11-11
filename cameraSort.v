@@ -3,24 +3,6 @@ import ui
 import net.html
 //import camsort_modules
 
-struct App {
-mut:
-	high_or_low 	bool
-	window         &ui.Window = 0
-	camera_name 	string
-	megapixels		string
-	format			string
-	launch_date 	string
-	launch_price 	string
-	overall_score 	string
-	dxo_overall_score string
-	portrait_score 	string
-	landscape_score string
-	sports_score	string
-	joshs_score 	string
-	data_list[]		Camera_data
-}
-
 [console]
 fn main()
 {
@@ -51,9 +33,28 @@ struct Camera_data
 
 //*******************GRAPHICAL USER INTERFACE*******************
 
+struct App {
+mut:
+	high_or_low 	bool
+	window         &ui.Window = 0
+	camera_name 	string
+	megapixels		string
+	format			string
+	launch_date 	string
+	launch_price 	string
+	overall_score 	string
+	dxo_overall_score string
+	portrait_score 	string
+	landscape_score string
+	sports_score	string
+	joshs_score 	string
+	data_list[]		Camera_data
+}
+
 fn graphical_user_interface(mut data_list[] Camera_data)
 {
 	mut app := &App{
+		high_or_low: true
 		data_list: data_list}
 	app.window = ui.window(
 		width: 1000
@@ -409,7 +410,7 @@ fn terminal_user_interface(mut data_list[] Camera_data)
 		action = os.input("(1) Josh Best | (2) Josh Worst | (3) Overall Best | (4) Overall Worst | (5) DXO Overall Best | 
 (6) DXO Overall Worst | (7) DXO Portrait Best | (8) DXO Portrait Worst | (9) DXO Landscape Best | 
 (10) DXO Landscape Worst | (11) DXO Sports Best | (12) DXO Sports Worst | (13) Newest | (14) Oldest |
-(15) Highest Megapixel | (16) Lowest Megapixel  | (17) Highest Price | (18) Lowest Price : ")
+(15) Highest Megapixel | (16) Lowest Megapixel  | (17) Highest Price | (18) Lowest Price | (19) Print To File: ")
 		println("")
 		match true
 		{
@@ -663,7 +664,7 @@ fn calculate_joshs_score(data Camera_data, budget int) int
 			score -= 50
 		}
 	}
-	if data.megapixels > 24
+	else if data.megapixels > 24
 	{
 		for i:= data.megapixels; i>24; i-=3
 		{
