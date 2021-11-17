@@ -1,7 +1,7 @@
 import os
 import ui
 import net.html
-//import camsort_modules
+// import camsort_modules
 
 [console]
 fn main()
@@ -11,8 +11,10 @@ fn main()
 	mut data_list := get_data_list(tag)
 	calculate_joshs_rank(mut data_list)
 	calculate_overall_rank(mut data_list)
-	// terminal_user_interface(mut data_list)
-	graphical_user_interface(mut data_list)
+	// mut data_list := []camsort_modules.Camera_data{len:388, cap:388}
+	// print_data_list_to_console(data_list)
+	terminal_user_interface(mut data_list)
+	// graphical_user_interface(mut data_list)
 }
 
 struct Camera_data
