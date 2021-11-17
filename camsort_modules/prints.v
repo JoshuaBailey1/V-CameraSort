@@ -1,7 +1,7 @@
 module camsort_modules
 import os
 
-pub fn print_data_list_to_console(data_list[] Camera_data)
+fn print_data_list_to_console(data_list[] Camera_data)
 {
 	for n:=0; n<data_list.len; n+=1
 	{
@@ -20,7 +20,7 @@ pub fn print_data_list_to_console(data_list[] Camera_data)
 	}
 }
 
-pub fn print_data_list_to_file (data_list[] Camera_data)
+fn print_data_list_to_file (data_list[] Camera_data)
 {
 	filename := "SortedCameras.txt"
 	os.open_file(filename, 'w') or { panic(err) }

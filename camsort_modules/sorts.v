@@ -1,6 +1,6 @@
 module camsort_modules
 
-pub fn sort_by_josh_score(mut data_list[] Camera_data, greater_than bool)
+fn sort_by_josh_score(mut data_list[] Camera_data, greater_than bool)
 {
 	if greater_than
 	{
@@ -12,7 +12,7 @@ pub fn sort_by_josh_score(mut data_list[] Camera_data, greater_than bool)
 	}
 }
 
-pub fn sort_by_overall_score (mut data_list[] Camera_data, greater_than bool)
+fn sort_by_overall_score (mut data_list[] Camera_data, greater_than bool)
 {
 	if greater_than
 	{
@@ -24,7 +24,7 @@ pub fn sort_by_overall_score (mut data_list[] Camera_data, greater_than bool)
 	}	
 }
 
-pub fn sort_by_dxo_overall_score (mut data_list[] Camera_data, greater_than bool)
+fn sort_by_dxo_overall_score (mut data_list[] Camera_data, greater_than bool)
 {
 	if greater_than
 	{
@@ -36,7 +36,7 @@ pub fn sort_by_dxo_overall_score (mut data_list[] Camera_data, greater_than bool
 	}	
 }
 
-pub fn sort_by_dxo_portrait_score (mut data_list[] Camera_data, greater_than bool)
+fn sort_by_dxo_portrait_score (mut data_list[] Camera_data, greater_than bool)
 {
 	if greater_than
 	{
@@ -48,7 +48,7 @@ pub fn sort_by_dxo_portrait_score (mut data_list[] Camera_data, greater_than boo
 	}	
 }
 
-pub fn sort_by_dxo_landscape_score (mut data_list[] Camera_data, greater_than bool)
+fn sort_by_dxo_landscape_score (mut data_list[] Camera_data, greater_than bool)
 {
 	if greater_than
 	{
@@ -60,7 +60,7 @@ pub fn sort_by_dxo_landscape_score (mut data_list[] Camera_data, greater_than bo
 	}	
 }
 
-pub fn sort_by_dxo_sports_score (mut data_list[] Camera_data, greater_than bool)
+fn sort_by_dxo_sports_score (mut data_list[] Camera_data, greater_than bool)
 {
 	if greater_than
 	{
@@ -72,7 +72,7 @@ pub fn sort_by_dxo_sports_score (mut data_list[] Camera_data, greater_than bool)
 	}	
 }
 
-pub fn sort_by_age (mut data_list[] Camera_data, greater_than bool)
+fn sort_by_age (mut data_list[] Camera_data, greater_than bool)
 {
 	if greater_than
 	{
@@ -84,7 +84,7 @@ pub fn sort_by_age (mut data_list[] Camera_data, greater_than bool)
 	}	
 }
 
-pub fn sort_by_megapixels (mut data_list[] Camera_data, greater_than bool)
+fn sort_by_megapixels (mut data_list[] Camera_data, greater_than bool)
 {
 	if greater_than
 	{
@@ -96,7 +96,7 @@ pub fn sort_by_megapixels (mut data_list[] Camera_data, greater_than bool)
 	}	
 }
 
-pub fn sort_by_price (mut data_list[] Camera_data, greater_than bool)
+fn sort_by_price (mut data_list[] Camera_data, greater_than bool)
 {
 	if greater_than
 	{

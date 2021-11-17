@@ -1,7 +1,6 @@
 module camsort_modules
-import os
 
-pub struct Camera_data
+struct Camera_data
 {
 	mut:
 	camera_name string

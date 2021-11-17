@@ -23,7 +23,7 @@ pub fn calculate_overall_rank(mut data_list[] Camera_data)
 	}
 }
 
-pub fn calculate_joshs_score(data Camera_data, budget int) int
+fn calculate_joshs_score(data Camera_data, budget int) int
 {
 	mut score := 1000
 	if data.launch_price > budget
